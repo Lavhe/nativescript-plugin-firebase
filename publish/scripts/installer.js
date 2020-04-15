@@ -173,10 +173,6 @@ function promptQuestions() {
     description: 'Are you using Firebase Google Authentication? (y/n)',
     default: 'n'
   }, {
-    name: 'twitter_auth',
-    description: 'Are you using Firebase Twitter Authentication? (y/n)',
-    default: 'n'
-  }, {
     name: 'admob',
     description: 'Are you using AdMob? (y/n)',
     default: 'n'
@@ -293,8 +289,8 @@ function echoAndroidManifestChanges(result) {
       console.log('\n######################################################################################################');
       console.log('Open your app\'s resources/Android/AndroidManifest.xml file and add this (see the demo for an example):');
       console.log('<meta-data\n' +
-          '    android:name="com.google.firebase.ml.vision.DEPENDENCIES"\n' +
-          '    android:value="' + selectedFeatures.join(',') + '" />');
+        '    android:name="com.google.firebase.ml.vision.DEPENDENCIES"\n' +
+        '    android:value="' + selectedFeatures.join(',') + '" />');
       console.log('######################################################################################################\n');
     }
   }
@@ -358,8 +354,8 @@ function writePodFile(result) {
   }
   try {
     fs.writeFileSync(directories.ios + '/Podfile',
-// The MLVision pod requires a minimum of iOS 9, otherwise the build will fail
-(isPresent(result.ml_kit) ? `` : `#`) + `platform :ios, '9.0'
+      // The MLVision pod requires a minimum of iOS 9, otherwise the build will fail
+      (isPresent(result.ml_kit) ? `` : `#`) + `platform :ios, '9.0'
 
 ` + (!isSelected(result.external_push_client_only) ? `` : `#`) + `pod 'Firebase/Core', '~>6.16.0'
 
@@ -459,7 +455,7 @@ function writeBuildscriptHookForCrashlytics(enable) {
   console.log("Install Crashlytics buildscript hook.");
   try {
     var scriptContent =
-        `const fs = require('fs-extra');
+      `const fs = require('fs-extra');
 const path = require('path');
 const xcode = require('xcode');
 
@@ -619,7 +615,7 @@ function writeBuildscriptHookForFirestore(enable) {
   console.log("Install Firestore buildscript hook.");
   try {
     var scriptContent =
-        `const fs = require('fs-extra');
+      `const fs = require('fs-extra');
 const path = require('path');
 
 module.exports = function($logger, $projectData, hookArgs) {
@@ -704,7 +700,7 @@ function writeGradleFile(result) {
   }
   try {
     fs.writeFileSync(directories.android + '/include.gradle',
-        `
+      `
 android {
     // (possibly-temporary) workaround for https://stackoverflow.com/questions/52518378/more-than-one-file-was-found-with-os-independent-path-meta-inf-proguard-android
     packagingOptions {
@@ -820,7 +816,7 @@ function writeGoogleServiceCopyHook() {
   console.log("Install google-service.json after-prepare copy hook.");
   try {
     var afterPrepareScriptContent =
-        `
+      `
 var path = require("path");
 var fs = require("fs");
 
@@ -933,7 +929,7 @@ return new Promise(function(resolve, reject) {
   console.log("Install google-service.json before-checkForChanges copy hook.");
   try {
     var beforeCheckForChangesContent =
-        `
+      `
 var path = require("path");
 var fs = require("fs");
 
@@ -1047,7 +1043,7 @@ var copyPlist = function(copyPlistOpts) {
 function writeGoogleServiceGradleHook(result) {
   try {
     var scriptContent =
-        `var path = require("path");
+      `var path = require("path");
 var fs = require("fs");
 
 module.exports = function($logger, $projectData) {
