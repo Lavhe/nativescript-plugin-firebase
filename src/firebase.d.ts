@@ -33,6 +33,12 @@ export enum LoginType {
    */
   GOOGLE,
   /**
+   * This requires you to setup Twitter Sign In in the Firebase console,
+   * as well as uncommenting the SDK includes in include.gradle (Android) and Podfile (iOS).
+   * You can pass in an optional 'twitterOptions' object to override the default scopes.
+   */
+  TWITTER,
+  /**
    * This requires you to pass in the 'emailLinkOptions' as well.
    * Note that 'Firebase Dynamic Links' must be enabled for this login type to work.
    */
@@ -310,6 +316,18 @@ export interface AppleLoginOptions {
   locale?: string;
 }
 
+export interface TwitterLoginOptions {
+  /**
+   * Default: []
+   */
+  scopes?: Array<string>;
+  /**
+   * Supported lang: https://developer.twitter.com/en/docs/twitter-for-websites/twitter-for-websites-supported-languages/overview
+   * Default: "en".
+   */
+  lang?: string;
+}
+
 export interface FirebaseCustomLoginOptions {
   /**
    * The JSON Web Token (JWT) to use for authentication.
@@ -340,6 +358,7 @@ export interface LoginOptions {
   googleOptions?: FirebaseGoogleLoginOptions;
   facebookOptions?: FirebaseFacebookLoginOptions;
   appleOptions?: AppleLoginOptions;
+  twitterOptions?: TwitterLoginOptions;
   customOptions?: FirebaseCustomLoginOptions;
   ios?: LoginIOSOptions;
 

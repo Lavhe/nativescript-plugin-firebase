@@ -173,6 +173,10 @@ function promptQuestions() {
     description: 'Are you using Firebase Google Authentication? (y/n)',
     default: 'n'
   }, {
+    name: 'twitter_auth',
+    description: 'Are you using Firebase Twitter Authentication? (y/n)',
+    default: 'n'
+  }, {
     name: 'admob',
     description: 'Are you using AdMob? (y/n)',
     default: 'n'
